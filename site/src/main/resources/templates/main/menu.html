@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<body>
+<ul class="sidebar-menu" data-widget="tree" th:fragment="menu">
+        <li class="header" th:text="#{main.title_menu}"></li>
+        <li th:class="${#httpServletRequest.requestURI == '/'} ? 'active treeview' : 'treeview'">
+            <a href="/">
+                <i class="glyphicon glyphicon-home"></i> <span th:text="#{main.menu.home}"></span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+        </li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')" class="treeview">
+            <a href="/admin">
+                <i class="glyphicon glyphicon-home"></i> <span th:text="#{main.menu.admin}"></span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+        </li>
+    </ul>
+</body>
+</html>
